@@ -30,19 +30,25 @@ describe('Mars Rover', () => {
             rover.turnRight();
             expect(rover.currentDirection).toEqual('E');
         });
+
+        it('will not send rover outside of plateau coordinates', () => {
+            const rover3 = new MarsRover(1, 5, 'N', 'M', [5,5]);
+            const finalPosition3 = rover3.explore();
+            expect(finalPosition3).toEqual('1 5 N');
+        });
     });
 
     describe('#startingPositionCheck()', () => {
         it('throws an error if rover is outside of the plateau boundries', () => {
-            const rover3 = new MarsRover(1, 6, 'N', 'RM', [5,5]);
-            expect(() => rover3.explore()).toThrowError('Cannot send rover that is outside the plateau boundries.');
+            const rover4 = new MarsRover(1, 6, 'N', 'RM', [5,5]);
+            expect(() => rover4.explore()).toThrowError('Cannot send rover that is outside the plateau boundries.');
         });
     });
 
     describe('#startingDirectionCheck()', () => {
         it('throws an error if rover is not pointed in one of the four cardinal directions', () => {
-            const rover4 = new MarsRover(1, 1, 'F', 'LM', [5,5]);
-            expect(() => rover4.explore()).toThrowError('Rover is not pointed in one of the four cardinal directions.');
+            const rover5 = new MarsRover(1, 1, 'F', 'LM', [5,5]);
+            expect(() => rover5.explore()).toThrowError('Rover is not pointed in one of the four cardinal directions.');
         });
     });
 
@@ -55,8 +61,8 @@ describe('Mars Rover', () => {
         });
 
         it('throws an error for an invalid movement', () => {
-            const rover5 = new MarsRover(1, 1, 'N', 'F', [5,5]);
-            expect(() => rover5.explore()).toThrowError('This is not a valid movement.');
+            const rover6 = new MarsRover(1, 1, 'N', 'F', [5,5]);
+            expect(() => rover6.explore()).toThrowError('This is not a valid movement.');
         });
     });
 });

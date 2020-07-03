@@ -1,4 +1,4 @@
-import { MarsRover } from './mars_rover';
+import MarsRover from './mars_rover';
 
 export function formatPlateauLimitations(coordinates) {
     // remove whitespace, return plateau limitations as array of x, y coordinates (integers)

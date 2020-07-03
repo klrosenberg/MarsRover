@@ -1,6 +1,6 @@
 const assert = require('assert');
 import { formatPlateauLimitations, exploreMars } from './util';
-import  { MarsRover } from './mars_rover';
+import  MarsRover from './mars_rover';
 
 describe('Mars Rover', () => {
     let rover;
@@ -39,6 +39,11 @@ describe('Mars Rover', () => {
             expect(finalPosition).toEqual('1 3 N');
             expect(finalPosition2).toEqual('5 1 E');
         });
+
+        it('throws an error for an invalid movement', () => {
+            const rover3 = new MarsRover(1, 1, 'N', 'F', [5,5]);
+            expect(() => rover3.explore()).toThrowError('This is not a valid movement.');
+        });
     });
 });
 
@@ -46,19 +51,5 @@ describe('#formatPlateauLimitations()', () => {
     it('returns plateau limitations as array of x, y coordinates (integers)', () => {
         const plateauLimitations = formatPlateauLimitations('5 5');
         expect(plateauLimitations).toEqual([5,5]);
-    });
-});
-
-
-describe('#exploreMars()', () => {
-    const explorationInformation = 
-        `5 5
-        1 2 N
-        LMLMLMLMM
-        3 3 E
-        MMRMMRMRRM`;
-
-    it('calls explore() once per rover', () => {
-   
     });
 });

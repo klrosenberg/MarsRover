@@ -57,11 +57,11 @@ class MarsRover {
             (this.routeInstructions[i] == 'L') && this.turnLeft();
             (this.routeInstructions[i] == 'R') && this.turnRight();
             (this.routeInstructions[i] == 'M') && this.moveForward();
+            // check for invalid movements
+            if (!['L', 'R', 'M'].includes(this.routeInstructions[i])) throw 'This is not a valid movement.';
         }
         return [this.getX(), this.getY(), this.currentDirection].join(' ');
     };
 }
 
-module.exports = {
-    MarsRover
-};
+module.exports = MarsRover;

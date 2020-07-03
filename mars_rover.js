@@ -54,11 +54,11 @@ class MarsRover {
 
     explore() {
         for (let i = 0; i < this.routeInstructions.length; i++) {
+            // check for invalid movements
+            if (!['L', 'R', 'M'].includes(this.routeInstructions[i])) throw 'This is not a valid movement.';
             (this.routeInstructions[i] == 'L') && this.turnLeft();
             (this.routeInstructions[i] == 'R') && this.turnRight();
             (this.routeInstructions[i] == 'M') && this.moveForward();
-            // check for invalid movements
-            if (!['L', 'R', 'M'].includes(this.routeInstructions[i])) throw 'This is not a valid movement.';
         }
         return [this.getX(), this.getY(), this.currentDirection].join(' ');
     };

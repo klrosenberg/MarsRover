@@ -52,7 +52,24 @@ class MarsRover {
         }
     }
 
+    startingPositionCheck() {
+        if (this.getX() > this.plateauLimitations[0] || this.getX() < 0 || this.getY() > this.plateauLimitations[1] || this.getY() < 0) {
+            throw 'Cannot send rover that is outside the plateau boundries.';
+        }
+    }
+
+    startingDirectionCheck() {
+        if (!['N', 'E', 'S', 'W'].includes(this.currentDirection)) {
+            throw 'Rover is not pointed in one of the four cardinal directions.';
+        }
+    }
+
     explore() {
+        // check that rover is starting within plateau boundries
+        this.startingPositionCheck();
+        // check that rover is pointing in one of the four cardinal directions
+        this.startingDirectionCheck();
+
         for (let i = 0; i < this.routeInstructions.length; i++) {
             // check for invalid movements
             if (!['L', 'R', 'M'].includes(this.routeInstructions[i])) throw 'This is not a valid movement.';

@@ -3,6 +3,13 @@ import { formatPlateauLimitations, exploreMars } from './util';
 import  MarsRover from './mars_rover';
 jest.mock('./mars_rover');
 
+describe('#formatPlateauLimitations()', () => {
+    it('returns plateau limitations as array of x, y coordinates (integers)', () => {
+        const plateauLimitations = formatPlateauLimitations('5 5');
+        expect(plateauLimitations).toEqual([5,5]);
+    });
+});
+
 describe('#exploreMars()', () => {
     const explorationInformation = 
         `5 5

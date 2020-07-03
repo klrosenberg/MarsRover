@@ -32,6 +32,20 @@ describe('Mars Rover', () => {
         });
     });
 
+    describe('#startingPositionCheck()', () => {
+        it('throws an error if rover is outside of the plateau boundries', () => {
+            const rover3 = new MarsRover(1, 6, 'N', 'RM', [5,5]);
+            expect(() => rover3.explore()).toThrowError('Cannot send rover that is outside the plateau boundries.');
+        });
+    });
+
+    describe('#startingDirectionCheck()', () => {
+        it('throws an error if rover is not pointed in one of the four cardinal directions', () => {
+            const rover4 = new MarsRover(1, 1, 'F', 'LM', [5,5]);
+            expect(() => rover4.explore()).toThrowError('Rover is not pointed in one of the four cardinal directions.');
+        });
+    });
+
     describe('#explore()', () => {
         it('returns the final coordinates and cardinal direction', () => {
             const finalPosition = rover.explore();
@@ -41,15 +55,8 @@ describe('Mars Rover', () => {
         });
 
         it('throws an error for an invalid movement', () => {
-            const rover3 = new MarsRover(1, 1, 'N', 'F', [5,5]);
-            expect(() => rover3.explore()).toThrowError('This is not a valid movement.');
+            const rover5 = new MarsRover(1, 1, 'N', 'F', [5,5]);
+            expect(() => rover5.explore()).toThrowError('This is not a valid movement.');
         });
-    });
-});
-
-describe('#formatPlateauLimitations()', () => {
-    it('returns plateau limitations as array of x, y coordinates (integers)', () => {
-        const plateauLimitations = formatPlateauLimitations('5 5');
-        expect(plateauLimitations).toEqual([5,5]);
     });
 });
